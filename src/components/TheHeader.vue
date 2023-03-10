@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import BaseInput from "./BaseInput.vue";
-import axios from "axios"
-
+import InputField from "./InputField.vue"
 import { useTaskStore } from "../stores/store"
+
 const taskStore = useTaskStore()
 
 const isModalOpen = ref(false)
@@ -13,6 +12,7 @@ const tags = ref([])
 
 const newTag = ref("")
 
+
 function addNewTag(){
     tags.value.push(newTag.value)
 }
@@ -20,6 +20,7 @@ function addNewTag(){
 const modalForm = ref({
   id: String(new Date().getTime()).substring(10),
   tags: tags.value,
+  status: "Todo"
 })
 
 function handleSubmit() {
@@ -46,22 +47,21 @@ function handleSubmit() {
           <form @submit.prevent="handleSubmit">
            <h1>Add New Task</h1>
 
-              <BaseInput v-model="modalForm.title" type="text" label="Title" />
+              <InputField v-model="modalForm.title" type="text" label="Title" />
 
               <div class="field">
-                <BaseInput v-model="newTag"  type="text" label="Tags" />
+                <InputField v-model="newTag"  type="text" label="Tags" />
                 <button @click.prevent="addNewTag">Add Tag</button>
                 <div class="addedTags">
                   <div v-for="tag in tags" :key="tag">{{ tag }}</div>
                 </div>
               </div>
-
-              <fieldset>
-                  <BaseInput v-model="modalForm.endDate"  type="Date"  label="Enddate" />
-                  <BaseInput v-model="modalForm.status" type="checkbox" label="IsDone:" />
-              </fieldset>
-                 <BaseInput v-model="modalForm.desc" textarea="true" label="Description: " />
-            <button type="submit">Send</button>
+                 <InputField v-model="modalForm.endDate"  type="Date"  label="EndDate:" />
+                 <InputField v-model="modalForm.desc" textarea="true" label="Description: " />
+                 <div class="buttons">
+                    <button type="submit">Send</button>
+                    <button @click.prevent="isModalOpen =false ">Close</button>
+                 </div>
           </form>
      </div>
   </teleport>
@@ -109,7 +109,7 @@ function handleSubmit() {
       gap: 40px;
       overflow-x: auto;
       width: 300px;
-      margin: 20px 0;
+      margin-top: 10px ;
       padding-bottom: 20px;
       div{
         background-color: gray;

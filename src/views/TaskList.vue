@@ -16,18 +16,18 @@ const taskStore = useTaskStore()
       <h3>TASKS</h3>
 
       <div class="table-filter">
-
-        <select name="Status" @change="$event => taskStore.filterByStatus($event)" >
+        <button @click="taskStore.removeFilters()">Remove Filter</button>
+        <select name="Status" @change="$event => taskStore.filterByDone($event.target.value)" >
           <option selected hidden>Status</option>
-          <option value="false">TODO</option>
-          <option value="true" >DONE</option>
+          <option value="Todo">Todo</option>
+          <option value="Completed" >Completed</option>
         </select>
 
         <select name="Tag" >
           <option selected hidden>Tag</option>
         </select>
 
-        <input type="text">
+        <input type="text" @input="$event => taskStore.filterByQuery($event.target.value)">
       </div>
     </div>
 
@@ -43,10 +43,10 @@ const taskStore = useTaskStore()
         </tr>
       </thead>
       <tbody>
-        <tr v-for="task in taskStore.tasks" :key="task?.id">
+        <tr v-for="task in taskStore.filtredTasks" :key="task?.id">
           <td>{{task.id}}</td>
           <td>{{ task.title }}</td>
-          <td class="tags-td">  <div v-for="tag in task.tags.slice(0,3)" :key="tag">{{ tag }}</div> </td>
+          <td class="tags-td">  <div v-for="tag,i in task.tags.slice(0,3)" :key="i">{{ tag }}</div> </td>
           <td>{{ task.endDate }}</td>
           <td>{{ task.status}}</td>
           <td><button>Edit</button></td>
@@ -71,13 +71,10 @@ const taskStore = useTaskStore()
 
 .loading{
   background-color: yellow;
-  width: 100%;
+  padding: 30px 60px;
+  width: 50%;
+  margin: 100px auto;
 }
-
-
-// @media (min-width: 1024px) {
-
-// }
 
 .table {
   width: 100%;
