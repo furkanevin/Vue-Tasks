@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { ref } from 'vue'
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [],
     filtredTasks: [],
+    singleTask: {},
     tags: [],
     isLoading: false
   }),
@@ -30,6 +32,17 @@ export const useTaskStore = defineStore('taskStore', {
         .catch((err) => console.log(err))
     },
 
+    getSingleTask(routeId) {
+      this.isLoading = true
+
+      axios
+        .get(`http://localhost:3030/tasks/${routeId}`)
+        .then((res) => {
+          this.singleTask = res.data
+        })
+        .catch((err) => console.log(err))
+    },
+
     addNewTask(newTask) {
       axios
         .post('http://localhost:3030/tasks', newTask)
@@ -42,12 +55,12 @@ export const useTaskStore = defineStore('taskStore', {
 
     orderByStatus(status) {
       this.tasks.sort((a, b) => {
-        if (status === 'Todo') {
-          if (a.title < b.title) return -1
-          if (a.title > b.title) return 1
+        if (status === 'Completed') {
+          if (a.status < b.status) return -1
+          if (a.status > b.status) return 1
         } else {
-          if (a.title > b.title) return -1
-          if (a.title < b.title) return 1
+          if (a.status > b.status) return -1
+          if (a.status < b.status) return 1
         }
         return 0
       })

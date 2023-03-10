@@ -1,35 +1,13 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Oraya Git",
-      "tags": [
-        "önemli",
-        "test"
-      ],
-      "endDate": "2022",
-      "status": "Todo",
-      "description": "aynen öyleler"
-    },
-    {
-      "id": 2,
-      "title": "Oraya Gittin mi?",
-      "tags": [
-        "önemli",
-        "test"
-      ],
-      "endDate": "2023",
-      "status": "Completed",
-      "description": "aynen öyleler"
-    },
-    {
       "id": "993",
       "tags": [
         "Important"
       ],
       "status": "Todo",
       "title": "Complete the project",
-      "endDate": "2023-02-14",
+      "endDate": "2022-02-14",
       "desc": "please do it"
     },
     {
@@ -49,7 +27,7 @@
         "asd",
         "123"
       ],
-      "status": "Todo",
+      "status": "Completed",
       "endDate": "2023-03-29",
       "title": "Deneme",
       "desc": "selam"
@@ -67,7 +45,7 @@
     {
       "id": "768",
       "tags": [],
-      "status": "Todo",
+      "status": "Completed",
       "title": "Newest",
       "endDate": "2023-03-21",
       "desc": "noyou"

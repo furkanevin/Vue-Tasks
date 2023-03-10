@@ -1,8 +1,10 @@
 <script setup>
-import { useTaskStore } from "../stores/store"
+import { useRouter } from 'vue-router';
+import { useTaskStore } from "../stores/store";
 
+const router = useRouter()
 const taskStore = useTaskStore()
-
+taskStore.getTasks()
 
 </script>
 
@@ -53,7 +55,7 @@ const taskStore = useTaskStore()
         </tr>
       </thead>
       <tbody>
-        <tr v-for="task in taskStore.filtredTasks" :key="task?.id">
+        <tr v-for="task in taskStore.filtredTasks" :key="task?.id" @click="router.push(`tasks/${task.id}`)">
           <td>{{task.id}}</td>
           <td>{{ task.title }}</td>
           <td class="tags-td">  <div v-for="tag,i in task.tags.slice(0,3)" :key="i">{{ tag }}</div> </td>

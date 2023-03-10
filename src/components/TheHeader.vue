@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import InputField from "./InputField.vue"
 import { useTaskStore } from "../stores/store"
+import router from '../router';
 
 const taskStore = useTaskStore()
 
@@ -34,7 +35,7 @@ function handleSubmit() {
 
         <header>
           <div class="wrapper">
-            <h1>SOMETHING</h1>
+            <h1 @click="router.push('/')">SOMETHING</h1>
             <nav>
               <RouterLink to="/">Tasks</RouterLink>
               <a @click="isModalOpen = true"> AddTask </a>
