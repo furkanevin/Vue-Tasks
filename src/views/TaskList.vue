@@ -17,17 +17,27 @@ const taskStore = useTaskStore()
 
       <div class="table-filter">
         <button @click="taskStore.removeFilters()">Remove Filter</button>
-        <select name="Status" @change="$event => taskStore.filterByDone($event.target.value)" >
+
+        <select name="Status" @change="$event => taskStore.orderByStatus($event.target.value)" >
           <option selected hidden>Status</option>
           <option value="Todo">Todo</option>
           <option value="Completed" >Completed</option>
         </select>
 
-        <select name="Tag" >
+        <select name="Status" @change="$event => taskStore.orderByDate($event.target.value)" >
+          <option selected hidden>Date</option>
+          <option value="asc">Newest First</option>
+          <option value="dsc" >Oldest First</option>
+        </select>
+
+        <select name="Tag" @change="$event => taskStore.filterByTag($event.target.value)" >
           <option selected hidden>Tag</option>
+          <option v-for="tag,i in taskStore.tags" :value="tag" :key="i">{{ tag }}</option>
         </select>
 
         <input type="text" @input="$event => taskStore.filterByQuery($event.target.value)">
+
+
       </div>
     </div>
 
