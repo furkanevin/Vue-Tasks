@@ -136,7 +136,7 @@ function handleSubmit() {
                   <button @click.prevent="addNewTag">Add Tag</button>
                   <div v-if="errors.tags">{{ errors.tags }}</div>
                   <div class="addedTags">
-                    <!-- <div v-for="tag in selectedsForm.tags" :key="tag" class="already-added">{{ tag }}</div> -->
+                    <div v-for="tag in selectedsForm.tags" :key="tag" class="already-added" v-once>{{ tag }}</div>
                     <div v-for="tag in tags" :key="tag">{{ tag }}</div>
                    </div>
                   </div>
