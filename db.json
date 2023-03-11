@@ -6,7 +6,7 @@
         "Important"
       ],
       "status": "Todo",
-      "title": "Complete the project 10",
+      "title": "Nice try",
       "endDate": "2022-02-14",
       "desc": "please do it"
     },
@@ -62,7 +62,8 @@
     {
       "id": "359",
       "tags": [
-        "asd"
+        "asd",
+        "as"
       ],
       "status": "Todo",
       "title": "validate test",

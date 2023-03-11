@@ -4,6 +4,7 @@
 
 <style scoped>
 h4{
-
+z-index: -1;
+text-align: center;
 }
 </style>

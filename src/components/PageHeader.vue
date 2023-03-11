@@ -26,7 +26,7 @@ function addNewTag(){
      errors.value.tags = ""
   }
   else {
-  errors.value.tags = "Tags can only contain letters" 
+  errors.value.tags = "Tags can only contain letters and can't be empty" 
   return;
   }
     
@@ -52,6 +52,9 @@ function handleSubmit() {
     errors.value.endDate = ""
   }
     return
+  }else if(modalForm.value.title.length > 30){
+     errors.value.title = "Tittle cannot have more than 30 characters"
+    return 
   }else{
     taskStore.addNewTask(modalForm.value)
     isModalOpen.value = false
@@ -235,7 +238,7 @@ header {
   background-color: 
   rgb(58, 58, 58);
   padding: 150px;
-  z-index: 100;
+  z-index: 1000;
    @include sm{
     width: 70vw;
       padding: 20px;

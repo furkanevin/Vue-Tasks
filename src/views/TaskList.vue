@@ -19,18 +19,49 @@ function onEditBtnClick(param){
 
 const tags = ref([])
 
+const errors = ref({})
+
 const newTag = ref("")
 
 
 function addNewTag() {
-  tags.value.push(newTag.value)
+  var letters = /^[A-Za-z]+$/;
+  if (newTag.value.match(letters)) {
+    tags.value.push(newTag.value)
+    selectedsForm.value.tags.push(newTag.value)
+    errors.value.tags = ""
+  }
+  else {
+    errors.value.tags = "Tags can only contain letters and can't be empty"
+    return;
+  }
+
 }
 
 
 function handleSubmit() {
-  console.log(selectedsForm)
-  isDrawerOpen.value = false
-  taskStore.updateTask(selectedsForm.value)
+
+
+    if (!selectedsForm.value.title || !selectedsForm.value.endDate) {
+      if (!selectedsForm.value.title) {
+        errors.value.title = "Tittle cannot be empty"
+      } else {
+        errors.value.title = ""
+      }
+      if (!selectedsForm.value.endDate) {
+        errors.value.endDate = "EndDate cannot be empty"
+      } else {
+        errors.value.endDate = ""
+      }
+      return
+    } else if (selectedsForm.value.title.length > 30) {
+      errors.value.title = "Tittle cannot have more than 30 characters"
+      return
+    } else {
+      isDrawerOpen.value = false
+      taskStore.updateTask(selectedsForm.value)
+  }
+
 }
 
 </script>
@@ -99,15 +130,18 @@ function handleSubmit() {
              <form @submit.prevent="handleSubmit">
              <h1 class="drawer-title"> Update The Task</h1>
                 <InputField v-model="selectedsForm.title" type="text" label="Title" />
+                <div v-if="errors.title">{{ errors.title }}</div>
                 <div class="field">
                   <InputField v-model="newTag"  type="text" label="Tags" />
                   <button @click.prevent="addNewTag">Add Tag</button>
+                  <div v-if="errors.tags">{{ errors.tags }}</div>
                   <div class="addedTags">
-                    <div v-for="tag in selectedsForm.tags" :key="tag" class="already-added">{{ tag }}</div>
+                    <!-- <div v-for="tag in selectedsForm.tags" :key="tag" class="already-added">{{ tag }}</div> -->
                     <div v-for="tag in tags" :key="tag">{{ tag }}</div>
                    </div>
                   </div>
                    <InputField v-model="selectedsForm.endDate"  type="Date"  label="EndDate:" />
+                   <div v-if="errors.endDate">{{ errors.endDate }}</div>
                   <button type="submit">Send</button>
             </form>
     </div>
