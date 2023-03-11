@@ -2,7 +2,8 @@
 import { onMounted } from 'vue';
 import { RouterView } from 'vue-router'
 import { useTaskStore } from "./stores/store"
-import TheHeader from './components/TheHeader.vue'
+import PageHeader from './components/PageHeader.vue'
+import PageFooter from './components/PageFooter.vue';
 
 const taskStore = useTaskStore()
 
@@ -14,9 +15,11 @@ onMounted(() => {
 
 <template >
   <div class="page-view">
-    <TheHeader />
+    <PageHeader />
 
     <RouterView />
+
+    <PageFooter />
   </div>
 
 </template>

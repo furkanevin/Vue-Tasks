@@ -1,10 +1,10 @@
-# vue-project
+# Vue Tasks
 
-This is a simple task managment app made with Vue
+This Project is a simple task managment case made with Vue
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 ## Project Setup
 

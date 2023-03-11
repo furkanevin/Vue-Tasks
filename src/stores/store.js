@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { ref } from 'vue'
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
@@ -34,23 +33,26 @@ export const useTaskStore = defineStore('taskStore', {
 
     getSingleTask(routeId) {
       this.isLoading = true
-
       axios
         .get(`http://localhost:3030/tasks/${routeId}`)
         .then((res) => {
           this.singleTask = res.data
+          this.isLoading = false
         })
         .catch((err) => console.log(err))
     },
 
     addNewTask(newTask) {
-      axios
-        .post('http://localhost:3030/tasks', newTask)
-        .then(() => {
-          this.tasks.push(newTask)
-          this.tags.push(...newTask.tags)
-        })
-        .catch((err) => console.log(err))
+      axios.post('http://localhost:3030/tasks', newTask).then(() => {
+        this.tasks.push(newTask)
+        this.tags.push(...newTask.tags)
+      })
+    },
+    updateTask(newValues) {
+      axios.put(`http://localhost:3030/tasks/${newValues.id}`, newValues).then(() => {
+        this.filtredTasks = this.tasks.filter((i) => i.title !== newValues.title)
+        this.filtredTasks.push(newValues)
+      })
     },
 
     orderByStatus(status) {
@@ -86,9 +88,11 @@ export const useTaskStore = defineStore('taskStore', {
         )
       } else this.filtredTasks = this.tasks
     },
+
     filterByTag(selectedTag) {
       this.filtredTasks = this.tasks.filter((i) => i.tags.includes(selectedTag))
     },
+
     removeFilters() {
       this.filtredTasks = this.tasks
     }
