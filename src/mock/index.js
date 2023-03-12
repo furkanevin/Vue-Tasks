@@ -15,6 +15,7 @@ export default function startMock() {
   })
 
   mock.onPost(import.meta.env.VITE_API_BASE_URL + '/tasks').reply((config) => {
+    console.log(config)
     const inputData = JSON.parse(config.data)
 
     json.tasks.push(inputData)

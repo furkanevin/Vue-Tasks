@@ -1,15 +1,37 @@
 <template>
   <div class="field">
     <label v-if="label">{{ label }}</label>
-    <textarea v-if="textarea" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
-      v-bind="$attrs" />
-    <input v-else :type="type" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
-      v-bind="$attrs" />
+    <div class="editor" v-if="textarea">
+     <div class="editor-menu" :editor="editor">
+        <button  @click="editor.chain().focus().toggleBold().run()" >
+          Bold
+        </button>
+      </div> 
+      <editor-content
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        :editor="editor"
+      />
+    </div>
+
+    <input
+      v-else
+      :type="type"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      v-bind="$attrs"
+    />
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
+import Text from '@tiptap/extension-text'
+import Bold from '@tiptap/extension-bold'
+
+const props = defineProps({
   label: {
     type: [String, Boolean],
     default: false
@@ -26,6 +48,18 @@ defineProps({
     type: String,
     default: 'text'
   }
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const editor = useEditor({
+  extensions: [Document, Paragraph, Text, Bold],
+  content: props.modelValue,
+  autofocus: true,
+  editable: true,
+  onUpdate: ({ editor }) => {
+    emit('update:modelValue', editor.getHTML())
+  },
 })
 </script>
 

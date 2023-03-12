@@ -1,13 +1,14 @@
 <template>
   <button @click="toggleMode()" class="edit-btn">Edit</button>
-  <EditForm :data="taskStore.singleTask" textarea= true v-if="editMode" />
+  <EditForm :data="taskStore.singleTask" textarea=true v-if="editMode"  />
     <main v-else>
       <h1>ID: <span>{{ taskStore.singleTask.id }}</span></h1>
       <h1>Title: <span>{{ taskStore.singleTask.title }}</span></h1>
       <h1>EndDate: <span>{{ taskStore.singleTask.endDate }}</span></h1>
       <h1>Status: <span>{{ taskStore.singleTask.status }}</span></h1>
       <h1>Tags: <div v-for="(tag,i) in taskStore.singleTask.tags" :key="i">{{ tag }}</div> </h1>
-      <h1>Description: <span>{{ taskStore.singleTask.description }}</span></h1>
+      <h1>Description: </h1>
+      <p v-html="taskStore.singleTask.desc"> </p>
     </main>
 </template>
 <script setup>

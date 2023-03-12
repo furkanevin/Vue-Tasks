@@ -20,9 +20,10 @@
     </div>
     <InputField v-model="form.endDate" type="Date" label="EndDate:" />
     <div v-if="errors.endDate">{{ errors.endDate }}</div>
-    <label for="status" style="margin: 20px 0px">
+    <!-- <label for="status" style="margin: 20px 0px">
       <input type="checkbox" v-model="status" />
-    </label>
+    </label> -->
+    <InputField v-if="props.textarea" v-model="form.desc" textarea=true label="Description:"/>
     <button type="submit">Send</button>
   </form>
 </template>
@@ -32,7 +33,7 @@ import { defineProps, defineEmits, watchEffect, ref, computed, watch } from 'vue
 import InputField from '../components/InputField.vue'
 import { useTaskStore } from '../stores/store'
 
-const props = defineProps(['data', 'insertMode', 'isDrawerOpen'])
+const props = defineProps(['data', 'insertMode', 'isDrawerOpen',"textarea",])
 const emit = defineEmits(['save'])
 const taskStore = useTaskStore()
 const status = ref(false)
@@ -41,6 +42,7 @@ const form = ref({
   tags: [],
   endDate: ''
 })
+console.log(form)
 const errors = ref({
   title: false,
   tags: false,
@@ -54,6 +56,9 @@ watchEffect(() => {
 watch(status, () => {
   form.value.status = status.value ? 'Todo' : 'Complete'
 })
+
+
+
 
 const newTag = ref('')
 
@@ -72,6 +77,7 @@ const handleSubmit = () => {
   if (!validateData()) {
     props.insertMode ? taskStore.addNewTask(form.value) : taskStore.updateTask(form.value)
     emit('close-method')
+    taskStore.getSingleTask(form.value.id)
   }
 }
 
@@ -104,6 +110,11 @@ const resetValidations = () => {
 }
 </script>
 <style lang="scss">
+form{
+  display: flex;
+  flex-direction:column ;
+  gap: 30px;
+}
 .addedTags {
   margin-top: 10px;
   padding-bottom: 20px;

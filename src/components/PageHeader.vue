@@ -34,10 +34,12 @@ function addNewTag() {
 
 
 const modalForm = ref({
-  id: String(new Date().getTime()).substring(10),
+  id:   Math.max(...taskStore.tasks.map(i => i.y)) + 1,
   tags: tags.value,
   status: "Todo"
 })
+
+console.log(modalForm)
 
 function handleSubmit() {
   if (!modalForm.value.title || !modalForm.value.endDate) {
@@ -103,7 +105,6 @@ function handleSubmit() {
         </div>
         <InputField v-model="modalForm.endDate" type="Date" label="EndDate:" />
         <div v-if="errors.endDate">{{ errors.endDate }}</div>
-        <InputField v-model="modalForm.desc" textarea=true label="Description: " />
         <div class="buttons">
           <button type="submit">Send</button>
           <button @click.prevent="isModalOpen = false">Close</button>
