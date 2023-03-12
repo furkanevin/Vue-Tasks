@@ -2,6 +2,8 @@
 
 This Project is a simple task managment case made with Vue
 
+If tou want to check it out online : <a href="https://task1fy.netlify.app/">Online Preview</a>
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
@@ -9,13 +11,7 @@ This Project is a simple task managment case made with Vue
 ## Project Setup
 
 ```sh
-npm install
-```
-
-## Run the Server
-
-```sh
-npm run server
+yarn install
 ```
 
 ### Compile and Hot-Reload for Development
