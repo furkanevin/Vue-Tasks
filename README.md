@@ -2,7 +2,7 @@
 
 This Project is a simple task managment case made with Vue
 
-If tou want to check it out online : <a href="https://task1fy.netlify.app/">Online Preview</a>
+If you want to check it out online : <a href="https://task1fy.netlify.app/">Online Preview</a>
 
 ## Recommended IDE Setup
 
