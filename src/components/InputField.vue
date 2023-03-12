@@ -3,16 +3,16 @@
     <label v-if="label">{{ label }}</label>
     <div class="editor" v-if="textarea">
      <div class="editor-menu" :editor="editor">
-        <button  @click="editor.chain().focus().toggleBold().run()" >
+        <button  @click.prevent="editor.chain().focus().toggleBold().run()" >
           Bold
         </button>
-        <button  @click="editor.chain().focus().toggleItalic().run()" >
+        <button  @click.prevent="editor.chain().focus().toggleItalic().run()" >
           Italic
         </button>
-        <button  @click="editor.chain().focus().toggleStrike().run()" >
+        <button  @click.prevent="editor.chain().focus().toggleStrike().run()" >
           Strike
         </button>
-        <button  @click="editor.chain().focus().toggleCode().run()" >
+        <button  @click.prevent="editor.chain().focus().toggleCode().run()" >
           Code
         </button>
       </div> 

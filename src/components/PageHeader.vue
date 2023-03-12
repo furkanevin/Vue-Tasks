@@ -12,26 +12,20 @@ const isDrawerOpen = ref(false)
 
 const errors = ref({})
 
-
-
 const tags = ref([])
 
 const newTag = ref("")
 
-
-function addNewTag() {
+const addNewTag = () => {
   var letters = /^[A-Za-z]+$/;
   if (newTag.value.match(letters)) {
     tags.value.push(newTag.value)
     errors.value.tags = ""
-  }
-  else {
+  } else {
     errors.value.tags = "Tags can only contain letters and can't be empty"
     return;
   }
-
 }
-
 
 const modalForm = ref({
   id:   Math.max(...taskStore.tasks.map(i => i.y)) + 1,
@@ -41,7 +35,8 @@ const modalForm = ref({
 
 console.log(modalForm)
 
-function handleSubmit() {      
+const handleSubmit = async () => {
+  var letters = /^[A-Za-z]+$/
   if (!modalForm.value.title || !modalForm.value.endDate) {
     if (!modalForm.value.title) {
       errors.value.title = "Tittle cannot be empty"
@@ -57,15 +52,23 @@ function handleSubmit() {
   } else if (modalForm.value.title.length > 30) {
     errors.value.title = "Tittle cannot have more than 30 characters"
     return
+  } else if (!modalForm.value.title.match(letters)) { 
+    errors.value.title = "Title can only contain letters and can't be empty"
+    return
   } else {
-    taskStore.addNewTask(modalForm.value)
+    modalForm.value.tags = [...tags.value];
+    await taskStore.addNewTask(modalForm.value)
+    modalForm.value.tags = [];
+    modalForm.value.endDate = "";
+    modalForm.value.title = "";
+    tags.value = [];
+    newTag.value = "";
     isModalOpen.value = false
   }
 
 }
 
 </script>
-
 <template>
   <header>
     <div class="wrapper">
@@ -83,16 +86,12 @@ function handleSubmit() {
           <a @click="isModalOpen = true"> AddTask </a>
         </nav>
       </div>
-
     </div>
-
   </header>
-
   <teleport to="body" v-if="isModalOpen">
     <div class="modal-wrapper">
       <form @submit.prevent="handleSubmit">
         <h1>Add New Task</h1>
-
         <InputField v-model="modalForm.title" type="text" label="Title" />
         <div v-if="errors.title">{{ errors.title }}</div>
         <div class="field">
@@ -113,7 +112,6 @@ function handleSubmit() {
     </div>
   </teleport>
 </template>
-
 <style lang="scss">
 @mixin sm {
   @media only screen and (max-width: 790px) {

@@ -14,6 +14,8 @@ onMounted(() => {
 
 <template >
   <div class="page-view">
+    <notifications  position="bottom right"/>
+
     <PageHeader />
 
     <RouterView />

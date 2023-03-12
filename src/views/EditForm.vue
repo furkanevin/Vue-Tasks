@@ -20,9 +20,9 @@
     </div>
     <InputField v-model="form.endDate" type="Date" label="EndDate:" />
     <div v-if="errors.endDate">{{ errors.endDate }}</div>
-    <!-- <label for="status" style="margin: 20px 0px">
-      <input type="checkbox" v-model="status" />
-    </label> -->
+    <label for="statusCheckbox" style="margin: 20px 0px">
+      <input type="checkbox" id="statusCheckbox" v-model="status" /> Complete
+    </label>
     <InputField v-if="props.textarea" v-model="form.desc" textarea=true label="Description:"/>
     <button type="submit">Send</button>
   </form>
@@ -32,6 +32,7 @@
 import { defineProps, defineEmits, watchEffect, ref, computed, watch } from 'vue'
 import InputField from '../components/InputField.vue'
 import { useTaskStore } from '../stores/store'
+import { notify } from "@kyvg/vue3-notification";
 
 const props = defineProps(['data', 'insertMode', 'isDrawerOpen',"textarea",])
 const emit = defineEmits(['save'])
@@ -41,8 +42,8 @@ const form = ref({
   title: '',
   tags: [],
   endDate: ''
-})
-console.log(form)
+});
+
 const errors = ref({
   title: false,
   tags: false,
@@ -54,7 +55,7 @@ watchEffect(() => {
 })
 
 watch(status, () => {
-  form.value.status = status.value ? 'Todo' : 'Complete'
+  form.value.status = status.value ? 'Complete' : 'Todo'
 })
 
 
@@ -78,6 +79,12 @@ const handleSubmit = () => {
     props.insertMode ? taskStore.addNewTask(form.value) : taskStore.updateTask(form.value)
     emit('close-method')
     taskStore.getSingleTask(form.value.id)
+    notify({
+      title: "Your Task Successfully Saved",
+      type: 'success',
+
+      duration:5000
+    });
   }
 }
 

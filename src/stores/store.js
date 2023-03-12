@@ -42,10 +42,11 @@ export const useTaskStore = defineStore('taskStore', {
         .catch((err) => console.log(err))
     },
 
-    addNewTask(newTask) {
-      axios.post(import.meta.env.VITE_API_BASE_URL + '/tasks').then(() => {
-        this.tasks.push(newTask)
-        this.tags.push(...newTask.tags)
+    async addNewTask(newTask) {
+      await axios.post(import.meta.env.VITE_API_BASE_URL + '/tasks', newTask).then(() => {
+        newTask.id = this.tasks.length + 1;
+        this.tasks.push({ ...newTask });
+        this.tags.push({ ...newTask.tags });
       })
     },
     updateTask(newValue) {
