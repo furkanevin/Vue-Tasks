@@ -1,86 +1,57 @@
 {
   "tasks": [
     {
-      "id": 993,
-      "tags": [
-        "asd",
-        "nooo"
-      ],
+      "id": 1,
+      "tags": ["shopping", "groceries"],
       "status": "Completed",
-      "title": "Nice trya",
-      "endDate": "2022-02-14",
-      "desc": "<p>I’m running Tiptap with Vue.js. 🎉</p>"
+      "title": "Buy Groceries",
+      "endDate": "2023-03-18",
+      "desc": "<p>Make a list and go to the grocery store to buy food and other necessities.</p>"
     },
+
     {
-      "id": 693,
-      "tags": [
-        "Important"
-      ],
-      "status": "Todo",
-      "title": "Denemeler yap ",
-      "endDate": "2023-02-20",
-      "desc": "Bir açıklama"
-    },
-    {
-      "id": 638,
-      "tags": [
-        "asd"
-      ],
+      "id": 2,
+      "tags": ["work", "project"],
       "status": "Completed",
-      "endDate": "2023-03-29",
-      "title": "Deneme",
-      "desc": "selam"
+      "title": "Finish Project",
+      "endDate": "2023-04-05",
+      "desc": "<p>Complete the project by following the requirements and meeting the deadline.</p>"
     },
+
     {
-      "id": 486,
-      "tags": [
-        "deneme"
-      ],
+      "id": 3,
+      "tags": ["travel","health", "fitness"],
       "status": "Todo",
-      "title": "asd",
-      "endDate": "2023-03-20",
-      "desc": "nicü"
-    },
-    {
-      "id": 556,
-      "tags": [
-        "newest1"
-      ],
-      "status": "Todo",
-      "title": "Newest4",
-      "endDate": "2023-05-03",
-      "desc": "noo"
-    },
-    {
-      "id": 393,
-      "tags": [
-        "niceone"
-      ],
-      "status": "Todo",
-      "title": "After Valıdatıon haha",
-      "endDate": "2023-03-18"
-    },
-    {
-      "id": 359,
-      "tags": [
-        "asd",
-        "as",
-        "try"
-      ],
-      "status": "Todo",
-      "title": "validate test",
+      "title": "Exercise",
       "endDate": "2023-03-13",
-      "desc": "yes"
+      "desc": "<p>Go for a run or do a workout to stay healthy and fit.</p>"
     },
+
     {
-      "id":422,
-      "tags": [
-        "tag"
-      ],
+      "id": 4,
+      "tags": ["leisure", "reading"],
       "status": "Todo",
-      "title": "newestter",
-      "endDate": "2023-03-01",
-      "desc": "newseter"
+      "title": "Read Book",
+      "endDate": "2023-03-31",
+      "desc": "<p>Pick up a book and spend some time reading to relax and unwind.</p>"
+    },
+
+    {
+      "id": 5,
+      "tags": ["chores", "cleaning"],
+      "status": "Completed",
+      "title": "Clean House",
+      "endDate": "2023-03-15",
+      "desc": "<p>Clean the house by vacuuming, dusting, and doing laundry.</p>"
+    },
+
+    {
+      "id": 6,
+      "tags": ["travel", "vacation"],
+      "status": "Todo",
+      "title": "Plan Vacation",
+      "endDate": "2023-05-01",
+      "desc": "<p>Research and plan a vacation to a new destination.</p>"
     }
   ]
 }

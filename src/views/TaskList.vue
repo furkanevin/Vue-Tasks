@@ -45,7 +45,7 @@
               {{ task.id }}
             </td>
             <td @click="router.push(`tasks/${task.id}`)">
-              <h3>TITLE:</h3>
+              <h3 :class="{completed:task.status}">TITLE:</h3>
               {{ task.title }}
             </td>
             <td class="tags-td">
@@ -53,7 +53,7 @@
               <div v-for="(tag, i) in task.tags.slice(0, 1)" :key="i">{{ tag }}</div>
             </td>
             <td>
-              <h3>EndDate:</h3>
+              <h3 :class="{ completed: task.status }">EndDate:</h3>
               {{ task.endDate }}
             </td>
             <td>
@@ -207,7 +207,9 @@ function onEditBtnClick(param) {
         flex-direction: column;
         gap: 50px;
       }
-
+      .completed{
+        text-decoration: line-through;
+      }
       tr {
         box-shadow: 1px 0px 7px 0 rgba(215, 234, 243, 0.6);
         background: black;
