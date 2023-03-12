@@ -7,6 +7,9 @@
 
   font-weight: normal;
 }
+.page-view {
+  min-height: 100vh;
+}
 
 a,
 .green {

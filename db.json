@@ -1,18 +1,18 @@
 {
   "tasks": [
     {
-      "id": "993",
+      "id": 993,
       "tags": [
         "asd",
         "nooo"
       ],
-      "status": "Complete",
+      "status": "Completed",
       "title": "Nice trya",
       "endDate": "2022-02-14",
       "desc": "please do it"
     },
     {
-      "id": "693",
+      "id": 693,
       "tags": [
         "Important"
       ],
@@ -22,7 +22,7 @@
       "desc": "Bir açıklama"
     },
     {
-      "id": "638",
+      "id": 638,
       "tags": [
         "asd"
       ],
@@ -32,7 +32,7 @@
       "desc": "selam"
     },
     {
-      "id": "486",
+      "id": 486,
       "tags": [
         "deneme"
       ],
@@ -42,7 +42,7 @@
       "desc": "nicü"
     },
     {
-      "id": "556",
+      "id": 556,
       "tags": [
         "newest1"
       ],
@@ -52,7 +52,7 @@
       "desc": "noo"
     },
     {
-      "id": "393",
+      "id": 393,
       "tags": [
         "niceone"
       ],
@@ -61,7 +61,7 @@
       "endDate": "2023-03-18"
     },
     {
-      "id": "359",
+      "id": 359,
       "tags": [
         "asd",
         "as",
@@ -73,7 +73,7 @@
       "desc": "yes"
     },
     {
-      "id": "422",
+      "id":422,
       "tags": [
         "tag"
       ],

@@ -1,8 +1,17 @@
 <template>
-  <EditForm :data="taskStore.singleTask" textarea= true />
+  <button @click="toggleMode()" class="edit-btn">Edit</button>
+  <EditForm :data="taskStore.singleTask" textarea= true v-if="editMode" />
+    <main v-else>
+      <h1>ID: <span>{{ taskStore.singleTask.id }}</span></h1>
+      <h1>Title: <span>{{ taskStore.singleTask.title }}</span></h1>
+      <h1>EndDate: <span>{{ taskStore.singleTask.endDate }}</span></h1>
+      <h1>Status: <span>{{ taskStore.singleTask.status }}</span></h1>
+      <h1>Tags: <div v-for="(tag,i) in taskStore.singleTask.tags" :key="i">{{ tag }}</div> </h1>
+      <h1>Description: <span>{{ taskStore.singleTask.description }}</span></h1>
+    </main>
 </template>
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTaskStore } from '../stores/store'
 import EditForm from './EditForm.vue'
@@ -13,6 +22,15 @@ const route = useRoute()
 onMounted(() => {
   taskStore.getSingleTask(route.params.id)
 })
+
+// edit mode
+const editMode = ref(false)
+
+function toggleMode(){
+  editMode.value = !editMode.value
+}
+
+
 </script>
 
 <style lang="scss">
@@ -21,14 +39,24 @@ h1 {
     color: rgb(255, 221, 0);
   }
 }
+.edit-btn{
+  width: 70px;
+  background: black;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
 
 main {
-  margin: 100px auto;
+  margin: 0px auto;
   background-color: rgb(59, 59, 59);
   padding: 50px 40px;
   border-radius: 5px;
 
-  h2 {
+  h1 {
     display: flex;
     gap: 40px;
     margin-bottom: 50px;

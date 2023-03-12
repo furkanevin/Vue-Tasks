@@ -43,7 +43,7 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     addNewTask(newTask) {
-      axios.post(import.meta.env.VITE_API_BASE_URL + '/tasks', newTask).then(() => {
+      axios.post(import.meta.env.VITE_API_BASE_URL + '/tasks').then(() => {
         this.tasks.push(newTask)
         this.tags.push(...newTask.tags)
       })
