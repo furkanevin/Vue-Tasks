@@ -1,7 +1,7 @@
 <template>
   <div class="drawer-wrapper" v-if="isDrawerOpen">
     <div class="drawer">
-      <div @click="handled" class="close-btn">X</div>
+      <div @click="isDrawerOpen = false" class="close-btn">X</div>
       <EditForm
         :isDrawerOpen="props.isDrawerOpen" @update:isDrawerOpen="(val)=> emit('update:isDrawerOpen', val)"
         v-model:data="props.data"
@@ -17,9 +17,6 @@ import EditForm from './EditForm.vue'
 const props = defineProps(['isDrawerOpen', 'data'])
 const emit = defineEmits(['update:isDrawerOpen',])
 
-const handled = (first) => {
-  console.log('first', first)
-}
 </script>
 <style lang="scss">
 .addedTags {
