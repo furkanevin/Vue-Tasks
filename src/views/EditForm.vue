@@ -35,7 +35,7 @@ import { useTaskStore } from '../stores/store'
 import { notify } from "@kyvg/vue3-notification";
 
 const props = defineProps(['data', 'insertMode', 'isDrawerOpen',"textarea",])
-const emit = defineEmits(['save'])
+const emit = defineEmits(['save','closeMethod', 'update:isDrawerOpen'])
 const taskStore = useTaskStore()
 const status = ref(false)
 const form = ref({
@@ -58,9 +58,6 @@ watch(status, () => {
   form.value.status = status.value ? 'Complete' : 'Todo'
 })
 
-
-
-
 const newTag = ref('')
 
 const addNewTag = () => {
@@ -77,8 +74,10 @@ const addNewTag = () => {
 const handleSubmit = () => {
   if (!validateData()) {
     props.insertMode ? taskStore.addNewTask(form.value) : taskStore.updateTask(form.value)
-    emit('close-method')
+    emit('closeMethod')
+    emit('update:isDrawerOpen',false)
     taskStore.getSingleTask(form.value.id)
+    props.isDrawerOpen = false;
     notify({
       title: "Your Task Successfully Saved",
       type: 'success',
