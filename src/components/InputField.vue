@@ -6,11 +6,14 @@
         <button  @click="editor.chain().focus().toggleBold().run()" >
           Bold
         </button>
-        <button  @click="editor.chain().focus().toggleBold().run()" >
+        <button  @click="editor.chain().focus().toggleItalic().run()" >
           Italic
         </button>
-        <button  @click="editor.chain().focus().toggleBold().run()" >
-          Some
+        <button  @click="editor.chain().focus().toggleStrike().run()" >
+          Strike
+        </button>
+        <button  @click="editor.chain().focus().toggleCode().run()" >
+          Code
         </button>
       </div> 
       <editor-content
@@ -36,6 +39,9 @@ import Document from '@tiptap/extension-document'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Strike from '@tiptap/extension-strike'
+import Code from '@tiptap/extension-code'
 
 const props = defineProps({
   label: {
@@ -59,15 +65,12 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const editor = useEditor({
-  extensions: [Document, Paragraph, Text, Bold],
+  extensions: [Document, Paragraph, Text, Bold, Italic, Strike,Code],
   content: props.modelValue,
   autofocus: true,
   editable: true,
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
-  },
-   attributes: {
-    class: 'text-editor',
   },
 })
 </script>
@@ -97,9 +100,6 @@ const editor = useEditor({
   input[type='checkbox'] {
     width: auto;
   }
-}
-.text-editor{
-  background-color: white ;
 }
 .editor-menu{
   display: flex;
