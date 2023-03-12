@@ -18,6 +18,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.21.2",
     "@rushstack/eslint-patch": "^1.2.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",

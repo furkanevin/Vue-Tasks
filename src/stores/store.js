@@ -14,7 +14,7 @@ export const useTaskStore = defineStore('taskStore', {
     getTasks() {
       this.isLoading = true
       axios
-        .get('http://localhost:3030/tasks')
+        .get(import.meta.env.VITE_API_BASE_URL + '/tasks')
         .then((res) => {
           this.tasks = res.data
           this.filtredTasks = res.data
@@ -34,7 +34,7 @@ export const useTaskStore = defineStore('taskStore', {
     getSingleTask(routeId) {
       this.isLoading = true
       axios
-        .get(`http://localhost:3030/tasks/${routeId}`)
+        .get(import.meta.env.VITE_API_BASE_URL + `/tasks/${routeId}`)
         .then((res) => {
           this.singleTask = res.data
           this.isLoading = false
@@ -43,15 +43,15 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     addNewTask(newTask) {
-      axios.post('http://localhost:3030/tasks', newTask).then(() => {
+      axios.post(import.meta.env.VITE_API_BASE_URL + '/tasks', newTask).then(() => {
         this.tasks.push(newTask)
         this.tags.push(...newTask.tags)
       })
     },
-    updateTask(newValues) {
-      axios.put(`http://localhost:3030/tasks/${newValues.id}`, newValues).then(() => {
-        this.filtredTasks = this.tasks.filter((i) => i.title !== newValues.title)
-        this.filtredTasks.push(newValues)
+    updateTask(newValue) {
+      axios.put(import.meta.env.VITE_API_BASE_URL + `/tasks/${newValue.id}`, newValue).then(() => {
+        let itemIndex = this.filtredTasks.findIndex((i) => i.id === newValue.id)
+        this.filtredTasks[itemIndex] = newValue
       })
     },
 
