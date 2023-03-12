@@ -103,6 +103,7 @@ const editor = useEditor({
 }
 .editor-menu{
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   margin: 15px 0;
 }
