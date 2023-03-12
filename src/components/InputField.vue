@@ -6,6 +6,12 @@
         <button  @click="editor.chain().focus().toggleBold().run()" >
           Bold
         </button>
+        <button  @click="editor.chain().focus().toggleBold().run()" >
+          Italic
+        </button>
+        <button  @click="editor.chain().focus().toggleBold().run()" >
+          Some
+        </button>
       </div> 
       <editor-content
         :value="modelValue"
@@ -60,6 +66,9 @@ const editor = useEditor({
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
   },
+   attributes: {
+    class: 'text-editor',
+  },
 })
 </script>
 
@@ -89,11 +98,12 @@ const editor = useEditor({
     width: auto;
   }
 }
-
-textarea {
-  width: 100%;
-  min-height: 150px;
-  max-height: 250px;
-  resize: vertical;
+.text-editor{
+  background-color: white ;
+}
+.editor-menu{
+  display: flex;
+  gap: 40px;
+  margin: 15px 0;
 }
 </style>

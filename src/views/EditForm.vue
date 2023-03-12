@@ -114,6 +114,20 @@ form{
   display: flex;
   flex-direction:column ;
   gap: 30px;
+      button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
+      transition: box-shadow 0.4s;
+
+      &:hover {
+        box-shadow: none;
+        transition: all 0.4s;
+      }
+    }
 }
 .addedTags {
   margin-top: 10px;

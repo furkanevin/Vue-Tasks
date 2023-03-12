@@ -41,7 +41,7 @@ const modalForm = ref({
 
 console.log(modalForm)
 
-function handleSubmit() {
+function handleSubmit() {      
   if (!modalForm.value.title || !modalForm.value.endDate) {
     if (!modalForm.value.title) {
       errors.value.title = "Tittle cannot be empty"

@@ -2,12 +2,12 @@
   <button @click="toggleMode()" class="edit-btn">Edit</button>
   <EditForm :data="taskStore.singleTask" textarea=true v-if="editMode"  />
     <main v-else>
-      <h1>ID: <span>{{ taskStore.singleTask.id }}</span></h1>
-      <h1>Title: <span>{{ taskStore.singleTask.title }}</span></h1>
-      <h1>EndDate: <span>{{ taskStore.singleTask.endDate }}</span></h1>
-      <h1>Status: <span>{{ taskStore.singleTask.status }}</span></h1>
-      <h1>Tags: <div v-for="(tag,i) in taskStore.singleTask.tags" :key="i">{{ tag }}</div> </h1>
-      <h1>Description: </h1>
+      <h1 class="heading">ID: <span>{{ taskStore.singleTask.id }}</span></h1>
+      <h1 class="heading">Title: <span>{{ taskStore.singleTask.title }}</span></h1>
+      <h1 class="heading">EndDate: <span>{{ taskStore.singleTask.endDate }}</span></h1>
+      <h1 class="heading">Status: <span>{{ taskStore.singleTask.status }}</span></h1>
+      <h1 class="heading">Tags: <div v-for="(tag,i) in taskStore.singleTask.tags" :key="i">{{ tag }}</div> </h1>
+      <h1 class="heading">Description: </h1>
       <p v-html="taskStore.singleTask.desc"> </p>
     </main>
 </template>
@@ -56,15 +56,20 @@ main {
   background-color: rgb(59, 59, 59);
   padding: 50px 40px;
   border-radius: 5px;
-
+  .heading{
+    font-weight: normal;
+  }
   h1 {
     display: flex;
     gap: 40px;
     margin-bottom: 50px;
-
     span,
     div {
       color: azure;
     }
+  }
+  p{
+    color: white;
+    font-size: 19px;
   }
 }</style>
