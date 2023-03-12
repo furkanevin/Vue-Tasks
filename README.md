@@ -17,5 +17,5 @@ yarn install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+yarn run dev
 ```
