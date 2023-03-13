@@ -2,20 +2,12 @@
   <div class="field">
     <label v-if="label">{{ label }}</label>
     <div class="editor" v-if="textarea">
-     <div class="editor-menu" :editor="editor">
-        <button  @click.prevent="editor.chain().focus().toggleBold().run()" >
-          Bold
-        </button>
-        <button  @click.prevent="editor.chain().focus().toggleItalic().run()" >
-          Italic
-        </button>
-        <button  @click.prevent="editor.chain().focus().toggleStrike().run()" >
-          Strike
-        </button>
-        <button  @click.prevent="editor.chain().focus().toggleCode().run()" >
-          Code
-        </button>
-      </div> 
+      <div class="editor-menu" :editor="editor">
+        <button @click.prevent="editor.chain().focus().toggleBold().run()">Bold</button>
+        <button @click.prevent="editor.chain().focus().toggleItalic().run()">Italic</button>
+        <button @click.prevent="editor.chain().focus().toggleStrike().run()">Strike</button>
+        <button @click.prevent="editor.chain().focus().toggleCode().run()">Code</button>
+      </div>
       <editor-content
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
@@ -34,7 +26,7 @@
 </template>
 
 <script setup>
-import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
+import { useEditor, EditorContent } from '@tiptap/vue-3'
 import Document from '@tiptap/extension-document'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
@@ -65,13 +57,13 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const editor = useEditor({
-  extensions: [Document, Paragraph, Text, Bold, Italic, Strike,Code],
+  extensions: [Document, Paragraph, Text, Bold, Italic, Strike, Code],
   content: props.modelValue,
   autofocus: true,
   editable: true,
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
-  },
+  }
 })
 </script>
 
@@ -101,7 +93,7 @@ const editor = useEditor({
     width: auto;
   }
 }
-.editor-menu{
+.editor-menu {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;

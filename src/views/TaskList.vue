@@ -18,7 +18,7 @@
           </select>
           <select name="Tag" @change="($event) => taskStore.filterByTag($event.target.value)">
             <option selected hidden>Tag</option>
-            <option v-for="tag, i in taskStore.tags" :value="tag" :key="i">{{ tag }}</option>
+            <option v-for="(tag, i) in taskStore.tags" :value="tag" :key="i">{{ tag }}</option>
           </select>
           <input
             type="text"
@@ -45,12 +45,12 @@
               {{ task.id }}
             </td>
             <td @click="router.push(`tasks/${task.id}`)">
-              <h3 :class="{completed:task.status}">TITLE:</h3>
+              <h3 :class="{ completed: task.status }">TITLE:</h3>
               {{ task.title }}
             </td>
             <td class="tags-td">
               <h3>TAGS:</h3>
-              <div v-for="(tag, i) in task.tags.slice(0,2)" :key="i">{{ tag }}</div>
+              <div v-for="(tag, i) in task.tags.slice(0, 2)" :key="i">{{ tag }}</div>
             </td>
             <td>
               <h3 :class="{ completed: task.status }">EndDate:</h3>
@@ -207,7 +207,7 @@ function onEditBtnClick(param) {
         flex-direction: column;
         gap: 50px;
       }
-      .completed{
+      .completed {
         text-decoration: line-through;
       }
       tr {
@@ -298,7 +298,7 @@ function onEditBtnClick(param) {
     display: flex;
     gap: 40px;
     overflow-x: auto;
-    
+
     margin-top: 10px;
     padding-bottom: 20px;
 

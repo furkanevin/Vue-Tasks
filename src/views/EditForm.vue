@@ -8,13 +8,10 @@
       <button @click.prevent="addNewTag">Add Tag</button>
       <div v-if="errors.tags">{{ errors.tags }}</div>
       <div class="addedTags">
-        <div
-          v-for="(tag, index) in form.tags"
-          :class="props.data.tags.indexOf((x) => x == tag) > -1 ? 'already-added' : ''"
-          :key="tag"
-        >
+        <div v-for="(tag, index) in form.tags"
+          :class="props.data.tags.indexOf((x) => x == tag) > -1 ? 'already-added' : ''" :key="tag">
           {{ tag }}
-          <a href="Javascript:;" @click="form.tags.splice(index, 1) ">x</a>
+          <a href="Javascript:;" @click="form.tags.splice(index, 1)">x</a>
         </div>
       </div>
     </div>
@@ -23,7 +20,7 @@
     <label for="statusCheckbox" style="margin: 20px 0px">
       <input type="checkbox" id="statusCheckbox" v-model="status" /> Complete
     </label>
-    <InputField v-if="props.textarea" v-model="form.desc" textarea=true label="Description:"/>
+    <InputField v-if="props.textarea" v-model="form.desc" textarea=true label="Description:" />
     <button type="submit">Send</button>
   </form>
 </template>
@@ -34,8 +31,8 @@ import InputField from '../components/InputField.vue'
 import { useTaskStore } from '../stores/store'
 import { notify } from "@kyvg/vue3-notification";
 
-const props = defineProps(['data', 'insertMode', 'isDrawerOpen',"textarea",])
-const emit = defineEmits(['save','closeMethod', 'update:isDrawerOpen'])
+const props = defineProps(['data', 'insertMode', 'isDrawerOpen', "textarea",])
+const emit = defineEmits(['save', 'closeMethod', 'update:isDrawerOpen'])
 const taskStore = useTaskStore()
 const status = ref(false)
 const form = ref({
@@ -75,14 +72,14 @@ const handleSubmit = () => {
   if (!validateData()) {
     props.insertMode ? taskStore.addNewTask(form.value) : taskStore.updateTask(form.value)
     emit('closeMethod')
-    emit('update:isDrawerOpen',false)
+    emit('update:isDrawerOpen', false)
     taskStore.getSingleTask(form.value.id)
     props.isDrawerOpen = false;
     notify({
       title: "Your Task Successfully Saved",
       type: 'success',
 
-      duration:5000
+      duration: 5000
     });
   }
 }
@@ -116,25 +113,27 @@ const resetValidations = () => {
 }
 </script>
 <style lang="scss">
-form{
+form {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   gap: 30px;
-      button {
-      padding: 10px 20px;
-      border-radius: 5px;
-      background-color: black;
-      color: white;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      cursor: pointer;
-      transition: box-shadow 0.4s;
 
-      &:hover {
-        box-shadow: none;
-        transition: all 0.4s;
-      }
+  button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    transition: box-shadow 0.4s;
+
+    &:hover {
+      box-shadow: none;
+      transition: all 0.4s;
     }
+  }
 }
+
 .addedTags {
   margin-top: 10px;
   padding-bottom: 20px;
@@ -149,6 +148,4 @@ form{
     color: white;
   }
 }
-
-
 </style>

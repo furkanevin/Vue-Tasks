@@ -49,6 +49,7 @@ export const useTaskStore = defineStore('taskStore', {
         this.tags = this.tags.concat(newTask.tags.filter((item) => this.tags.indexOf(item) < 0))
       })
     },
+
     updateTask(newValue) {
       axios.put(import.meta.env.VITE_API_BASE_URL + `/tasks/${newValue.id}`, newValue).then(() => {
         let itemIndex = this.filtredTasks.findIndex((i) => i.id === newValue.id)

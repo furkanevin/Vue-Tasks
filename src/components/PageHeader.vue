@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import InputField from "./InputField.vue"
-import { useTaskStore } from "../stores/store"
-import router from '../router';
+import InputField from './InputField.vue'
+import { useTaskStore } from '../stores/store'
+import router from '../router'
 
 const taskStore = useTaskStore()
 
@@ -14,23 +14,23 @@ const errors = ref({})
 
 const tags = ref([])
 
-const newTag = ref("")
+const newTag = ref('')
 
 const addNewTag = () => {
-  var letters = /^[A-Za-z]+$/;
+  var letters = /^[A-Za-z]+$/
   if (newTag.value.match(letters)) {
     tags.value.push(newTag.value)
-    errors.value.tags = ""
+    errors.value.tags = ''
   } else {
     errors.value.tags = "Tags can only contain letters and can't be empty"
-    return;
+    return
   }
 }
 
 const modalForm = ref({
-  id:   Math.max(...taskStore.tasks.map(i => i.y)) + 1,
+  id: Math.max(...taskStore.tasks.map((i) => i.y)) + 1,
   tags: tags.value,
-  status: "Todo"
+  status: 'Todo'
 })
 
 console.log(modalForm)
@@ -39,43 +39,41 @@ const handleSubmit = async () => {
   var letters = /^[A-Za-z]+$/
   if (!modalForm.value.title || !modalForm.value.endDate) {
     if (!modalForm.value.title) {
-      errors.value.title = "Tittle cannot be empty"
+      errors.value.title = 'Tittle cannot be empty'
     } else {
-      errors.value.title = ""
+      errors.value.title = ''
     }
     if (!modalForm.value.endDate) {
-      errors.value.endDate = "EndDate cannot be empty"
+      errors.value.endDate = 'EndDate cannot be empty'
     } else {
-      errors.value.endDate = ""
+      errors.value.endDate = ''
     }
     return
   } else if (modalForm.value.title.length > 30) {
-    errors.value.title = "Tittle cannot have more than 30 characters"
+    errors.value.title = 'Tittle cannot have more than 30 characters'
     return
-  } else if (!modalForm.value.title.match(letters)) { 
+  } else if (!modalForm.value.title.match(letters)) {
     errors.value.title = "Title can only contain letters and can't be empty"
     return
   } else {
-    console.log("ASDASD",tags.value)
-    modalForm.value.tags = tags.value;
+    console.log('ASDASD', tags.value)
+    modalForm.value.tags = tags.value
     await taskStore.addNewTask(modalForm.value)
     // EMPTY
-    modalForm.value.tags = [];
-    modalForm.value.endDate = "";
-    modalForm.value.title = "";
-    tags.value = [];
-    newTag.value = "";
+    modalForm.value.tags = []
+    modalForm.value.endDate = ''
+    modalForm.value.title = ''
+    tags.value = []
+    newTag.value = ''
     isModalOpen.value = false
   }
-
 }
-
 </script>
 <template>
   <header>
     <div class="wrapper">
       <h1 @click="router.push('/')">Taskify</h1>
-      <img @click="isDrawerOpen = true" src="../assets/menu-icon.png" class="menu-icon">
+      <img @click="isDrawerOpen = true" src="../assets/menu-icon.png" class="menu-icon" />
       <nav class="md-nav">
         <RouterLink to="/">Tasks</RouterLink>
         <a @click="isModalOpen = true"> AddTask </a>
@@ -117,13 +115,13 @@ const handleSubmit = async () => {
 <style lang="scss">
 @mixin sm {
   @media only screen and (max-width: 790px) {
-    @content
+    @content;
   }
 }
 
 @mixin md {
   @media only screen and (min-width: 790px) {
-    @content
+    @content;
   }
 }
 
@@ -155,7 +153,6 @@ const handleSubmit = async () => {
       align-items: center;
       justify-content: space-between;
       gap: 30px;
-      ;
     }
 
     .field {
@@ -246,8 +243,7 @@ header {
   top: 0;
   height: 100vh;
   width: 50vw;
-  background-color:
-    rgb(58, 58, 58);
+  background-color: rgb(58, 58, 58);
   padding: 150px;
   z-index: 1000;
 
@@ -298,7 +294,6 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-
   nav {
     font-size: 1rem;
   }

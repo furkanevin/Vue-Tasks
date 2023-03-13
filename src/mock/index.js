@@ -18,7 +18,6 @@ export default function startMock() {
     var id = json.tasks.length + 1;
     const inputData = JSON.parse(config.data)
     inputData.id = id;
-    console.log('inputData', inputData)
     json.tasks.push(inputData)
 
     return [200, json.tasks]
