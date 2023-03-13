@@ -18,7 +18,7 @@
           </select>
           <select name="Tag" @change="($event) => taskStore.filterByTag($event.target.value)">
             <option selected hidden>Tag</option>
-            <option v-for="(tag, i) in taskStore.tags" :value="tag" :key="i">{{ tag }}</option>
+            <option v-for="tag, i in taskStore.tags" :value="tag" :key="i">{{ tag }}</option>
           </select>
           <input
             type="text"
@@ -50,7 +50,7 @@
             </td>
             <td class="tags-td">
               <h3>TAGS:</h3>
-              <div v-for="(tag, i) in task.tags.slice(0, 1)" :key="i">{{ tag }}</div>
+              <div v-for="(tag, i) in task.tags.slice(0,2)" :key="i">{{ tag }}</div>
             </td>
             <td>
               <h3 :class="{ completed: task.status }">EndDate:</h3>
@@ -298,13 +298,16 @@ function onEditBtnClick(param) {
     display: flex;
     gap: 40px;
     overflow-x: auto;
-    width: 300px;
+    
     margin-top: 10px;
     padding-bottom: 20px;
 
     div {
       background-color: gray;
       padding: 2px 5px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
       border-radius: 5px;
       color: white;
     }

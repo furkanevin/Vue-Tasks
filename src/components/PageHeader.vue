@@ -56,8 +56,10 @@ const handleSubmit = async () => {
     errors.value.title = "Title can only contain letters and can't be empty"
     return
   } else {
-    modalForm.value.tags = [...tags.value];
+    console.log("ASDASD",tags.value)
+    modalForm.value.tags = tags.value;
     await taskStore.addNewTask(modalForm.value)
+    // EMPTY
     modalForm.value.tags = [];
     modalForm.value.endDate = "";
     modalForm.value.title = "";

@@ -14,7 +14,7 @@
           :key="tag"
         >
           {{ tag }}
-          <a href="Javascript:;" @click="form.tags.splice(index, 1)">x</a>
+          <a href="Javascript:;" @click="form.tags.splice(index, 1) ">x</a>
         </div>
       </div>
     </div>
