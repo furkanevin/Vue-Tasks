@@ -69,6 +69,7 @@ const addNewTag = () => {
 }
 
 const handleSubmit = () => {
+
   if (!validateData()) {
     props.insertMode ? taskStore.addNewTask(form.value) : taskStore.updateTask(form.value)
     emit('closeMethod')
@@ -91,6 +92,8 @@ const hasError = computed(() => {
 const validateData = () => {
   resetValidations()
 
+  var letters = /^[A-Za-z]+$/
+
   if (!form.value.title) {
     errors.value.title = 'Tittle cannot be empty'
   }
@@ -101,6 +104,11 @@ const validateData = () => {
 
   if (form.value.title.length > 30) {
     errors.value.title += '<br>Tittle cannot have more than 30 characters'
+  }
+
+
+  if (!form.value.title.match(letters)) {
+    errors.value.title += "Title can only contain letters and can't be empty"
   }
 
   return hasError.value
