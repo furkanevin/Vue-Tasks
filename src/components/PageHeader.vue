@@ -36,7 +36,7 @@ const modalForm = ref({
 console.log(modalForm)
 
 const handleSubmit = async () => {
-  var letters = /^[A-Za-z]+$/
+  var letters = /^[A-Za-z\s]*$/
   if (!modalForm.value.title || !modalForm.value.endDate) {
     if (!modalForm.value.title) {
       errors.value.title = 'Tittle cannot be empty'

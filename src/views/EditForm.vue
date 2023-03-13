@@ -58,7 +58,7 @@ watch(status, () => {
 const newTag = ref('')
 
 const addNewTag = () => {
-  var letters = /^[A-Za-z]+$/
+  var letters = /^[A-Za-z\s]*$/
   if (newTag.value.match(letters)) {
     form.value.tags.push(newTag.value)
     errors.value.tags = ''
@@ -92,7 +92,7 @@ const hasError = computed(() => {
 const validateData = () => {
   resetValidations()
 
-  var letters = /^[A-Za-z]+$/
+  var letters = /^[A-Za-z\s]*$/
 
   if (!form.value.title) {
     errors.value.title = 'Tittle cannot be empty'
